@@ -8,18 +8,24 @@ import ActiveService from './pages/ActivePage'
 import OverduePage from './pages/OverduePage'
 import PaidService from './pages/PaidService'
 import FormService from './pages/FormService'
+
+import ProtectedRoute from './pages/ProtectedRoute'
 function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage/>} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/service" element={<FormService/>} />
-          <Route path="/service/active" element={<ActiveService/>} />
-          <Route path="/service/overdue" element={<OverduePage/>} />
-          <Route path="/service/paid" element={<PaidService/>} /> 
+
+          <Route element={<ProtectedRoute/>} >
+            <Route path="/service" element={<FormService />} />
+            <Route path="/service/active" element={<ActiveService />} />
+            <Route path="/service/overdue" element={<OverduePage />} />
+            <Route path="/service/paid" element={<PaidService />} />
+          </Route>
+
         </Routes>
       </BrowserRouter>
     </AuthProvider>
