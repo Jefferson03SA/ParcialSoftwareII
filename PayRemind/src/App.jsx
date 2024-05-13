@@ -1,21 +1,28 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
+
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
-
+import HomePage from './pages/HomePage'
+import ActiveService from './pages/ActivePage'
+import OverduePage from './pages/OverduePage'
+import PaidService from './pages/PaidService'
+import FormService from './pages/FormService'
 function App() {
- return (
-   <BrowserRouter>
-     <Routes>
-       <Route path="/" element={<h1>Home page</h1>} />
-       <Route path="/login" element={<LoginPage/>}/>
-       <Route path="/register" element={<RegisterPage/>} />
-       <Route path="/service" element={<h1>Añadir Servicio</h1>} />
-       <Route path="/service/active" element={<h1>Servicios activos</h1>} />
-       <Route path="/service/overdue" element={<h1>Servicios vencidos</h1>} />
-       <Route path="/service/paid" element={<h1>Servicios pagados</h1>} />
-     </Routes>
-   </BrowserRouter>
- )
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage/>} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/service" element={<FormService/>} />
+          <Route path="/service/active" element={<ActiveService/>} />
+          <Route path="/service/overdue" element={<OverduePage/>} />
+          <Route path="/service/paid" element={<PaidService/>} /> 
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  )
 }
-
 export default App
